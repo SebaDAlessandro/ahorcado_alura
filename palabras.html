@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Oracle - Alura: 2do Challenge</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="./imagenes/Logo.png" alt="Logo Alura" class="logo">
+        <nav class="nav">
+            <ul class="nav-ul">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./juego.html">Jugar</a></li>
+                <li><a href="./palabras.html">Agregar Palabra</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="inicio-ingresopalabra">
+        <div class="container-ingresopalabra">
+            <input type="text" id="ingresopalabra" class="input-palabra" placeholder="Ingrese la palabra aquí" required>
+        </div>
+        <section class="info-restriccion">
+            <i class="fa">&#xf06a;</i>
+            <p class="instruccionesUsuario">Max. de 10 letras</p>
+        </section>
+        <div class="botones">
+            <button id="btn-guardar" class="btn-guardar">Guardar Palabra</button>
+            <button id="btn-borrar" class="btn-borrar"><a href="./palabras.html" style="text-decoration: none">Borrar</a></button>
+        </div>
+    </main>
+    <footer>
+        <div class="footer_socials">
+          <a href="https://www.linkedin.com/in/sebadalessandro/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/SebaDAlessandro" target="_blank">GitHub</a>
+          <a href="https://sebadalessandro.github.io/portfolio/"target="_blank">Portfolio</a>
+        </div>
+  
+        <div class="footer_copyright">
+          <small>&copy; Sebastián D'Alessandro</small>
+        </div>
+      </footer>
+</body>
+</html>

@@ -1,0 +1,285 @@
+body {
+    background-color: blueviolet;
+    font-family: 'Bebas Neue', cursive;
+    height: 600px;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+}
+
+/*----------------------------- nav -----------------------------*/
+
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    width: -webkit-fill-available;
+}
+
+.nav-ul {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;   
+}
+
+li {
+    margin: 0 20px;
+}
+
+li a{
+    text-decoration: none;
+    font-size: 20px;
+    transition: 1s;
+}
+
+li a:hover {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/*----------------------------- home -----------------------------*/
+
+.inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.btn-inicio {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    background: rgb(255, 2, 255);
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px;
+    transition: 1s;
+}
+
+.btn-inicio:hover {
+    background: white;
+    color:rgb(255, 2, 255);
+    font-size: 20.5px;
+}
+
+.btn-inicio a {
+    color: #0A3871;
+}
+
+.btn-palabraIn {
+    font-size: 12px;
+    width: 180px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    border-color: #ffffff;
+    background: none;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px black;
+    transition: 1s;
+}
+
+.btn-palabraIn a {
+    color: white;
+}
+
+.btn-palabraIn:hover {
+    background: rgb(149, 101, 197);
+    font-size: 12.5px;
+}
+
+/*----------------------------- footer -----------------------------*/
+
+footer {
+    background: #1f1f38;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    font-family: none;
+}
+
+.footer_socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer_socials a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    display: flex;
+    transition: 1s;
+}
+
+.footer_socials a:hover {
+    color: blue;
+}
+
+.footer_copyright {
+    margin-bottom: 15px;
+    color: white;
+}
+
+/*----------------------------- estilos palabras.html -----------------------------*/
+
+.inicio-ingresopalabra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+}
+
+.input-palabra {
+    font-family: 'Bebas Neue', cursive;
+    background: none;
+    border: none;
+    padding: 10px;
+    width: 400px;
+    color:white;
+    font-size: 18px;
+}
+::placeholder {
+    color: white;
+    font-size: 20px;
+}
+
+.info-restriccion {
+    font-family: none;
+    font-weight: bold;
+    width: 400px;
+    display: flex;
+    padding-top: 180px;
+    font-size: 12px;
+}
+
+.instruccionesUsuario {
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    padding-top: 5px;
+}
+
+.btn-guardar {
+    font-size: 12px;
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 25px;
+    background: rgb(255, 2, 255);
+    color: #0A3871;
+    font-weight: bold;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px black;
+    transition: 1s;
+}
+
+.btn-guardar:hover {
+    background: white;
+    color: #0A3871;
+}
+
+.btn-borrar {
+    font-size: 12px;
+    width: 180px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    border-color: #ffffff;
+    background: none;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px black;
+    color: white;
+    transition: 1s;
+}
+
+.btn-borrar:hover {
+    background: rgb(149, 101, 197);
+    font-size: 12.5px;
+}
+
+.btn-borrar a {
+    color: white;
+}
+
+/*----------------------------- estilos juego.html -----------------------------*/
+
+.inicio-juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 80%;
+}
+
+.tablero {
+    margin-bottom: 3%;
+}
+
+.botones-juego {
+    margin-bottom: 50px;
+}
+
+.btn-nuevoJuego {
+    font-size: 12px;
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 25px;
+    background: rgb(255, 2, 255);
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px;
+    transition: 1s;
+}
+
+.btn-nuevoJuego:hover {
+    background: white;
+}
+
+.btn-nuevoJuego a{
+    font-weight: bold;
+    color: #0A3871;
+}
+
+.btn-desistir {
+    font-size: 12px;
+    width: 180px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    border-color: #ffffff;
+    background: none;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px -6px black;
+    color: white;
+    transition: 1s;
+}
+
+.btn-desistir:hover {
+    background: rgb(149, 101, 197);
+    font-size: 12.5px;
+}
+
+.letras-descartadas {
+    display: flex;
+}
