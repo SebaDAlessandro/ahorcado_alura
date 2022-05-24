@@ -138,6 +138,12 @@ footer {
 
 /*----------------------------- estilos palabras.html -----------------------------*/
 
+.tituloInstruccionesUsuario {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
 .inicio-ingresopalabra {
     display: flex;
     flex-direction: column;

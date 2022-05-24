@@ -9,6 +9,8 @@ const letrasAcertadas = document.getElementById('letras-acertadas')
 
 const reload = document.getElementById('reload');
 
+const cargar = document.getElementById('cargar');
+
 /*-------------------- Guardar Palabras --------------------*/
 
 const btnGuardarId = document.getElementById('btn-guardar');
@@ -19,9 +21,9 @@ const inputEl = document.getElementById('ingresopalabra')
 
 /*-------------------- Letras --------------------*/
 
-let arrayPalabras = ['Biedma', 'Cushamen', 'Escalante', 'Ameghino', 'Futaleufu', 'Gaiman', 'Gastre', 'Languiñeo', 'Martires', 'Indios', 'Rawson', 'Senguer', 'Sarmiento', 'Tehuelches', 'Telsen'];
+// let arrayPalabras = ['Biedma', 'Cushamen', 'Escalante', 'Ameghino', 'Futaleufu', 'Gaiman', 'Gastre', 'Languiñeo', 'Martires', 'Indios', 'Rawson', 'Senguer', 'Sarmiento', 'Tehuelches', 'Telsen'];
 
-// let arrayPalabras = ['Alura', 'Oracle', 'Education', 'HTML', 'JavaScript', 'CSS', 'Developer', 'Challenge']
+let arrayPalabras = ['Alura', 'Oracle', 'Education', 'HTML', 'JavaScript', 'Developer', 'Challenge']
 
 /*-------------------- Tablero Canvas --------------------*/
 //inicio y color
@@ -122,6 +124,11 @@ const addLetra = letra => {
     letrasDescartadasId.appendChild(letraElemento)
 }
 
+const perdiste = ()=> {
+    alert('Fin del juego, la palabra seleccionada era: '+ palabraSeleccionada.join(''));
+    document.removeEventListener("keydown",eventoLetra);
+}
+
 const letraErrada = ()=>{
     switch (errores) {
         case 0: base('brown');
@@ -148,10 +155,7 @@ const letraErrada = ()=>{
             break;
     }
     errores++;
-    if (errores === 10) {
-        alert('Perdiste, la palabra seleccionada era: '+ palabraSeleccionada.join(''));
-        document.removeEventListener("keydown",eventoLetra);
-    }
+    if (errores === 10) perdiste()
 }
 
 const ganaste = ()=>{
@@ -199,7 +203,6 @@ const printPalabra = ()=>{
 
 const seleccionRandom = ()=>{
     let palabra = arrayPalabras[Math.floor((Math.random()*arrayPalabras.length))].toUpperCase();
-    console.log(arrayPalabras);
     palabraSeleccionada = palabra.split('');
 }
 
@@ -222,7 +225,6 @@ const iniciarJuego = ()=>{
     seleccionRandom()
     printPalabra()
     document.addEventListener('keydown', eventoLetra)
-
 }
 
 base('brown');
@@ -237,24 +239,13 @@ pieIzquierdo('black');
 pieDerecho('black');
 btnInicioId.addEventListener('click', iniciarJuego)
 
-//funcion input palabra a guardar
-
-// inputEl.addEventListener('keydown', (e) => {
-//     console.log(e)
-//     letraElegida = e.key;
-//     if(!letraElegida.match(/[A-Z]/)){
-//         alert('No ingresar numeros, simbolos o teclas especiales! Solamente ingresar letras!');
-//         letraElegida.splice()
-//     }
-// })
-
 //Funciona que guarda la palabra
 btnGuardarId.addEventListener('click', (e)=>{
     e.preventDefault();
     let newPalabra;
     newPalabra = document.getElementById('ingresopalabra').value;
     newPalabra=newPalabra.toUpperCase();
-    var expreg = new RegExp("^[A-Z]{3,10}$");
+    var expreg = new RegExp("^[A-ZÑ]{3,10}$");
     if(expreg.test(newPalabra)){
         arrayPalabras = [newPalabra]
     }else{
@@ -264,5 +255,9 @@ btnGuardarId.addEventListener('click', (e)=>{
 
 //reinicia todo el juego
 reload.addEventListener('click', _ => {
+    location.reload();
+});
+
+cargar.addEventListener('click', _ => {
     location.reload();
 });
