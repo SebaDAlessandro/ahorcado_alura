@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Oracle - Alura: 2do Challenge</title>
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
@@ -11,21 +12,62 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Seccion de navbar -->
     <header>
+
         <img src="./imagenes/Logo.png" alt="Logo Alura" class="logo">
+
         <nav class="nav">
           <ul class="nav-ul">
-              <li><a href="./index.html">Home</a></li>
-              <li><a href="./juego.html">Jugar</a></li>
-              <li><a href="./palabras.html">Agregar Palabra</a></li>
+              <li><a href="#iniciar">Home</a></li>
+              <li><a href="#word">Agregar Palabra</a></li>
+              <li><a href="#jugar">Jugar</a></li>
           </ul>
-      </nav>
+        </nav>
     </header>
-    <main class="inicio">
-        <button id="btn-jugar" class="btn-inicio"><a href="./juego.html" style="text-decoration: none">Iniciar juego</a></button>
-        <button id="btn-palabra" class="btn-palabraIn" href="./palabras.html"><a href="./palabras.html" style="text-decoration: none">Agregar una nueva palabra</a></button>
-    </main>
+
+    <!-- Seccion de inicio -->
+    <section class="inicio" id="iniciar">
+      <button id="btn-jugar" class="btn-inicio"><a href="#jugar" style="text-decoration: none">Iniciar juego</a></button>
+      <button id="btn-palabra" class="btn-palabraIn"><a href="#word" style="text-decoration: none">Agregar una nueva palabra</a></button>
+    </section>
+
+    <!-- Seccion de Agregado de Palabra -->
+    <section class="inicio-ingresopalabra" id="word">
+      <div class="container-ingresopalabra">
+          <input type="text" id="ingresopalabra" class="input-palabra" placeholder="Ingrese la palabra aquí" required>
+      </div>
+      <div class="info-restriccion">
+          <i class="fa">&#xf06a;</i>
+          <p class="instruccionesUsuario">Max. de 10 letras</p>
+      </div>
+      <div class="botones">
+          <button id="btn-guardar" class="btn-guardar">Guardar Palabra</button>
+          <button id="btn-borrar" class="btn-borrar"><a href="./juego.html" style="text-decoration: none">Borrar</a></button>
+      </div>
+    </section>
+
+    <!-- Seccion de Juego -->
+    <section class="inicio-juego" id="jugar">
+
+      <div id="panelGrafico">
+        <canvas width="600" height="400"></canvas>
+        <div class="letras-acertadas" id="letras-acertadas"></div>
+      </div>
+      <p class="letrasUsadas">Letras usadas: </p>
+      <div class="letras-descartadas" id="letras-descartadas">
+      </div>
+      <span></span>
+      <div class="botones-juego">
+        <button id="btn-nuevoJuego" class="btn-nuevoJuego">Nuevo juego</button>
+        <button id="reload" class="btn-desistir">Desistir</button>
+      </div>
+
+    </section>
+
+    <!-- Seccion Footer -->
     <footer>
       <div class="footer_socials">
         <a href="https://www.linkedin.com/in/sebadalessandro/" target="_blank">LinkedIn</a>
@@ -37,5 +79,8 @@
         <small>&copy; Sebastián D'Alessandro</small>
       </div>
     </footer>
+
+    <script src="./javaScript/juego.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,29 @@
-var pantalla = document.querySelector('canvas');
-var pincel = pantalla.getContext('2d');
+const pantalla = document.querySelector('canvas');
+let pincel = pantalla.getContext('2d');
+const panelId = document.getElementById('panelGrafico')
+const letrasDescartadasId = document.getElementById('letras-descartadas')
+const btnInicioId = document.getElementById('btn-nuevoJuego');
+const letrasAcertadas = document.getElementById('letras-acertadas')
 
+/*-------------------- toma el boton de reinicio de pagina --------------------*/
+
+const reload = document.getElementById('reload');
+
+/*-------------------- Guardar Palabras --------------------*/
+
+const btnGuardarId = document.getElementById('btn-guardar');
+
+/*-------------------- input para agregar palabra --------------------*/
+
+const inputEl = document.getElementById('ingresopalabra')
+
+/*-------------------- Letras --------------------*/
+
+let arrayPalabras = ['Biedma', 'Cushamen', 'Escalante', 'Ameghino', 'Futaleufu', 'Gaiman', 'Gastre', 'Languiñeo', 'Martires', 'Indios', 'Rawson', 'Senguer', 'Sarmiento', 'Tehuelches', 'Telsen'];
+
+// let arrayPalabras = ['Alura', 'Oracle', 'Education', 'HTML', 'JavaScript', 'CSS', 'Developer', 'Challenge']
+
+/*-------------------- Tablero Canvas --------------------*/
 //inicio y color
 function inicio(color){
     pincel.beginPath();
@@ -9,33 +32,33 @@ function inicio(color){
 
 /*-------------------- estructura --------------------*/
 //base
-function base() {
-    inicio('black')
-    pincel.fillRect(70, 360, 170, 5);
+const base =(color)=> {
+    inicio(color)
+    pincel.fillRect(70, 360, 170, 10);
 }
 
 //mastil
-function mastil() {
-    inicio('black')
-    pincel.fillRect(150, 110, 5, 250);
+function mastil(color) {
+    inicio(color)
+    pincel.fillRect(150, 110, 10, 250);
 }
 
 //viga
-function viga() {
-    inicio('black')
-    pincel.fillRect(150, 110, 170, 5);
+function viga(color) {
+    inicio(color)
+    pincel.fillRect(150, 110, 170, 10);
 }
 
-//palito
-function palito() {
-    inicio('black')
+//soporte
+function soporte(color) {
+    inicio(color)
     pincel.fillRect(315, 110, 5, 20);
 }
 
 /*-------------------- munheco --------------------*/
 //cabeza
-function cabeza() {
-    inicio('black')
+function cabeza(color) {
+    inicio(color)
     pincel.arc(318,155,25,0,2*3.14)
     pincel.fill()
     inicio('blueviolet')
@@ -44,14 +67,14 @@ function cabeza() {
 }
 
 //cuerpo
-function cuerpo() {
-    inicio('black')
+function cuerpo(color) {
+    inicio(color)
     pincel.fillRect(315, 180, 5, 110);
 }
 
 //brazos izquierdo
-function braIzquierdo() {
-    inicio('black')
+function braIzquierdo(color) {
+    inicio(color)
     pincel.moveTo(315, 190);
     pincel.lineTo(315, 200);
     pincel.lineTo(280, 250);
@@ -59,8 +82,8 @@ function braIzquierdo() {
 }
 
 //brazo derecho
-function braDerecho() {
-    inicio('black')
+function braDerecho(color) {
+    inicio(color)
     pincel.moveTo(320, 190);
     pincel.lineTo(320, 200);
     pincel.lineTo(355, 250);
@@ -68,8 +91,8 @@ function braDerecho() {
 }
 
 //pierna izquierda
-function pieIzquierdo() {
-    inicio('black')
+function pieIzquierdo(color) {
+    inicio(color)
     pincel.moveTo(315, 275);
     pincel.lineTo(315, 290);
     pincel.lineTo(280, 340);
@@ -77,25 +100,169 @@ function pieIzquierdo() {
 }
 
 //pierna derecha
-function pieDerecho(){
-    inicio('black')
+function pieDerecho(color){
+    inicio(color)
     pincel.moveTo(320, 275);
     pincel.lineTo(320, 290);
     pincel.lineTo(355, 340);
     pincel.fill();
 }
 
-//estructura
-base();
-mastil();
-viga();
-palito()
 
-//munheco
-cabeza();
-cuerpo();
-braIzquierdo();
-braDerecho();
-pieIzquierdo();
-pieDerecho();
+/*-------------------- logica de juego --------------------*/
 
+let palabraSeleccionada;
+let letrasUsadas;
+let errores;
+let aciertos;
+
+const addLetra = letra => {
+    const letraElemento = document.createElement('span');
+    letraElemento.innerHTML = letra;
+    letrasDescartadasId.appendChild(letraElemento)
+}
+
+const letraErrada = ()=>{
+    switch (errores) {
+        case 0: base('brown');
+                break;
+        case 1: mastil('brown');
+                break;
+        case 2: viga('brown');
+                break;
+        case 3: soporte('brown');
+                break;
+        case 4: cabeza('black');
+                break;
+        case 5: cuerpo('black');
+                break;
+        case 6: braIzquierdo('black');
+                break;
+        case 7: braDerecho('black');
+                break;
+        case 8: pieIzquierdo('black');
+                break;
+        case 9: pieDerecho('black');
+                break;
+        default:
+            break;
+    }
+    errores++;
+    if (errores === 10) {
+        alert('Perdiste, la palabra seleccionada era: '+ palabraSeleccionada.join(''));
+        document.removeEventListener("keydown",eventoLetra);
+    }
+}
+
+const ganaste = ()=>{
+    alert('GANASTE - Felicitaciones!!!');
+    document.removeEventListener("keydown",eventoLetra);
+}
+
+const letraCorrecta = letra =>{
+    const {children} = letrasAcertadas;
+    for (let i = 0; i < children.length; i++) {
+        if(children[i].innerHTML === letra){
+            children[i].classList.toggle('hidden');
+            aciertos++;
+        }  
+    }
+    if (aciertos === palabraSeleccionada.length) ganaste();
+}
+
+const letraInput = letra =>{
+    if(palabraSeleccionada.includes(letra)){
+            letraCorrecta(letra)
+    }else{
+        letraErrada();
+    }
+    addLetra(letra);
+}
+
+const eventoLetra = event =>{
+    let newLetra = event.key.toUpperCase();
+    if(newLetra.match(/^[a-zñ]$/i) && !letrasUsadas.includes(newLetra)){
+        letraInput(newLetra);
+        letrasUsadas.push(newLetra);
+    }
+}
+
+const printPalabra = ()=>{
+    palabraSeleccionada.forEach(letra =>{
+        const letraElement = document.createElement('span')
+        letraElement.innerHTML = letra;
+        letraElement.classList.add('letra');
+        letraElement.classList.add('hidden');
+        letrasAcertadas.appendChild(letraElement);
+    })
+}
+
+const seleccionRandom = ()=>{
+    let palabra = arrayPalabras[Math.floor((Math.random()*arrayPalabras.length))].toUpperCase();
+    console.log(arrayPalabras);
+    palabraSeleccionada = palabra.split('');
+}
+
+const iniciarJuego = ()=>{
+    letrasUsadas = [];
+    errores=0;
+    aciertos=0;
+    base('blueviolet');
+    mastil('blueviolet');
+    viga('blueviolet');
+    soporte('blueviolet');
+    cabeza('blueviolet');
+    cuerpo('blueviolet');
+    braIzquierdo('blueviolet');
+    braDerecho('blueviolet');
+    pieIzquierdo('blueviolet');
+    pieDerecho('blueviolet');
+    letrasAcertadas.innerHTML = '';
+    letrasDescartadasId.innerHTML = '';
+    seleccionRandom()
+    printPalabra()
+    document.addEventListener('keydown', eventoLetra)
+
+}
+
+base('brown');
+mastil('brown');
+viga('brown');
+soporte('brown');
+cabeza('black');
+cuerpo('black');
+braIzquierdo('black');
+braDerecho('black');
+pieIzquierdo('black');
+pieDerecho('black');
+btnInicioId.addEventListener('click', iniciarJuego)
+
+//funcion input palabra a guardar
+
+// inputEl.addEventListener('keydown', (e) => {
+//     console.log(e)
+//     letraElegida = e.key;
+//     if(!letraElegida.match(/[A-Z]/)){
+//         alert('No ingresar numeros, simbolos o teclas especiales! Solamente ingresar letras!');
+//         letraElegida.splice()
+//     }
+// })
+
+//Funciona que guarda la palabra
+btnGuardarId.addEventListener('click', (e)=>{
+    e.preventDefault();
+    let newPalabra;
+    newPalabra = document.getElementById('ingresopalabra').value;
+    newPalabra=newPalabra.toUpperCase();
+    var expreg = new RegExp("^[A-Z]{3,10}$");
+    if(expreg.test(newPalabra)){
+        arrayPalabras = [newPalabra]
+    }else{
+        alert('IMPORTANTE: No ingresar números, símbolos o caracteres especiales (nada de espacios, acentos, etc)! Solo se aceptan palabras que contengan de 3 a 10 letras!')
+    }
+})
+
+//reinicia todo el juego
+reload.addEventListener('click', _ => {
+    location.reload();
+});
